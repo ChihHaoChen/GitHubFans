@@ -13,6 +13,9 @@
 		B22A2C4523BDA049002B49C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B22A2C4323BDA049002B49C8 /* LaunchScreen.storyboard */; };
 		B22A2C4D23BDC045002B49C8 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A2C4C23BDC045002B49C8 /* SearchVC.swift */; };
 		B22A2C5023BDC0AC002B49C8 /* FavoriteListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A2C4F23BDC0AC002B49C8 /* FavoriteListVC.swift */; };
+		B22A2C5323BDFACE002B49C8 /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A2C5223BDFACE002B49C8 /* GFButton.swift */; };
+		B22A2C5523BE1C6F002B49C8 /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A2C5423BE1C6F002B49C8 /* GFTextField.swift */; };
+		B22A2C5723BE2CF9002B49C8 /* FollowerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22A2C5623BE2CF9002B49C8 /* FollowerListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		B22A2C4623BDA049002B49C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B22A2C4C23BDC045002B49C8 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		B22A2C4F23BDC0AC002B49C8 /* FavoriteListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListVC.swift; sourceTree = "<group>"; };
+		B22A2C5223BDFACE002B49C8 /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
+		B22A2C5423BE1C6F002B49C8 /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
+		B22A2C5623BE2CF9002B49C8 /* FollowerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		B22A2C3723BDA047002B49C8 /* GitHub_Fans */ = {
 			isa = PBXGroup;
 			children = (
+				B22A2C5123BDFAA3002B49C8 /* View */,
 				B22A2C3823BDA047002B49C8 /* AppDelegate.swift */,
 				B22A2C3A23BDA047002B49C8 /* SceneDelegate.swift */,
 				B22A2C4E23BDC05F002B49C8 /* Controller */,
@@ -71,8 +78,18 @@
 			children = (
 				B22A2C4C23BDC045002B49C8 /* SearchVC.swift */,
 				B22A2C4F23BDC0AC002B49C8 /* FavoriteListVC.swift */,
+				B22A2C5623BE2CF9002B49C8 /* FollowerListVC.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		B22A2C5123BDFAA3002B49C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B22A2C5223BDFACE002B49C8 /* GFButton.swift */,
+				B22A2C5423BE1C6F002B49C8 /* GFTextField.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,8 +162,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B22A2C5523BE1C6F002B49C8 /* GFTextField.swift in Sources */,
 				B22A2C5023BDC0AC002B49C8 /* FavoriteListVC.swift in Sources */,
+				B22A2C5323BDFACE002B49C8 /* GFButton.swift in Sources */,
 				B22A2C4D23BDC045002B49C8 /* SearchVC.swift in Sources */,
+				B22A2C5723BE2CF9002B49C8 /* FollowerListVC.swift in Sources */,
 				B22A2C3923BDA047002B49C8 /* AppDelegate.swift in Sources */,
 				B22A2C3B23BDA047002B49C8 /* SceneDelegate.swift in Sources */,
 			);
