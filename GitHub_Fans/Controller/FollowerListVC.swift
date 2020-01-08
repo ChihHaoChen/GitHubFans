@@ -22,7 +22,7 @@ class FollowerListVC: UIViewController {
 		NetworkService.shared.getFollowers(for: usernameForAPI, page: 1) { (followers, errorMessage) in
 			guard let followers = followers	else	{
 				print("API CALLs")
-				self.presentGFAlertOnMainThread(title: "Issues of the API requests", message: errorMessage!, buttonTitle: "Ok")
+				self.presentGFAlertOnMainThread(title: "Issues of the API requests", message: errorMessage!.rawValue, buttonTitle: "Ok")
 				
 				return
 			}
