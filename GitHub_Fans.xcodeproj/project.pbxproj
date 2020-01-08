@@ -79,6 +79,7 @@
 				B22A2C5123BDFAA3002B49C8 /* View */,
 				B22A2C4E23BDC05F002B49C8 /* Controller */,
 				B22A2C6123BF0620002B49C8 /* Support */,
+				B22A2C4623BDA049002B49C8 /* Info.plist */,
 			);
 			path = GitHub_Fans;
 			sourceTree = "<group>";
@@ -118,7 +119,6 @@
 			children = (
 				B22A2C4123BDA049002B49C8 /* Assets.xcassets */,
 				B22A2C4323BDA049002B49C8 /* LaunchScreen.storyboard */,
-				B22A2C4623BDA049002B49C8 /* Info.plist */,
 				B22A2C3823BDA047002B49C8 /* AppDelegate.swift */,
 				B22A2C3A23BDA047002B49C8 /* SceneDelegate.swift */,
 			);
