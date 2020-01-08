@@ -19,15 +19,14 @@ class FollowerListVC: UIViewController {
         
 		guard let usernameForAPI = username else { return }
 		
-		NetworkService.shared.getFollowers(for: usernameForAPI, page: 1) { (followers, errorMessage) in
-			guard let followers = followers	else	{
-				print("API CALLs")
-				self.presentGFAlertOnMainThread(title: "Issues of the API requests", message: errorMessage!.rawValue, buttonTitle: "Ok")
-				
-				return
+		NetworkService.shared.getFollowers(for: usernameForAPI, page: 1) { (result) in
+			
+			switch result	{
+				case .success(let followers):
+					print(followers)
+				case .failure(let error):
+					self.presentGFAlertOnMainThread(title: "Issues of the API requests", message: error.rawValue, buttonTitle: "Ok")
 			}
-			print("Followers.count = \(followers.count)")
-			print(followers)
 		}
     }
 	
