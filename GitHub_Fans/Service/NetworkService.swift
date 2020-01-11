@@ -6,13 +6,16 @@
 //  Copyright © 2020 ChihHao. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NetworkService	{
-	let baseURL = "https://api.github.com/users/"
-	let perPageFollowers = 100
 	// Baseline for Singleton, only one instance is allowed, and static
 	static let shared = NetworkService()
+	private let baseURL = "https://api.github.com/users/"
+	let perPageFollowers = 100
+	let cache = NSCache<NSString, UIImage>()
+
+
 	private init()	{}
 	
 	func getFollowers(for username: String, page: Int, completed: @escaping(Result<[Follower], GFError>) -> Void)	{
