@@ -26,6 +26,7 @@
 		B267BEE923C62861000767E8 /* GFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267BEE823C62861000767E8 /* GFError.swift */; };
 		B267BEEC23C6EBAF000767E8 /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267BEEB23C6EBAF000767E8 /* FollowerCell.swift */; };
 		B267BEEE23C6EC63000767E8 /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267BEED23C6EC63000767E8 /* GFAvatarImageView.swift */; };
+		B267BEF023C941AA000767E8 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B267BEEF23C941AA000767E8 /* UIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		B267BEE823C62861000767E8 /* GFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFError.swift; sourceTree = "<group>"; };
 		B267BEEB23C6EBAF000767E8 /* FollowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
 		B267BEED23C6EC63000767E8 /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
+		B267BEEF23C941AA000767E8 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				B267BEE823C62861000767E8 /* GFError.swift */,
+				B267BEEF23C941AA000767E8 /* UIHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				B22A2C5023BDC0AC002B49C8 /* FavoriteListVC.swift in Sources */,
 				B22A2C5323BDFACE002B49C8 /* GFButton.swift in Sources */,
 				B22A2C5F23BF01FA002B49C8 /* UIViewController+Ext.swift in Sources */,
+				B267BEF023C941AA000767E8 /* UIHelper.swift in Sources */,
 				B267BEEE23C6EC63000767E8 /* GFAvatarImageView.swift in Sources */,
 				B22A2C4D23BDC045002B49C8 /* SearchVC.swift in Sources */,
 				B267BEE623C5BBDB000767E8 /* NetworkService.swift in Sources */,

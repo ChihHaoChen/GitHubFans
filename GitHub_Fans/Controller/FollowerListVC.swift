@@ -41,31 +41,18 @@ class FollowerListVC: UIViewController {
 	}
 	
 	func configureCollectionView()	{
-		collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
+		collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
 		view.addSubview(collectionView)
 		collectionView.backgroundColor = .systemBackground
 		collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
-	}
-	
-	func createThreeColumnFlowLayout() -> UICollectionViewFlowLayout	{
-		let width = view.bounds.width
-		let padding: CGFloat = 12
-		let minimumItemSpacing: CGFloat = 10
-		let availableWidth = width - 2*padding - 2*minimumItemSpacing
-		let itemWidth = availableWidth/3
-		
-		let flowLayout = UICollectionViewFlowLayout()
-		flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-		flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
-		
-		return flowLayout
 	}
 	
 	// MARK: - API Requests
 	func getFollowers()	{
 		guard let usernameForAPI = username else { return }
 		
-		NetworkService.shared.getFollowers(for: usernameForAPI, page: 1) { (result) in
+		NetworkService.shared.getFollowers(for: usernameForAPI, page: 1) { [weak self] (result) in
+			guard let self = self else	{ return }	// Introduced in Swift 4.2
 			
 			switch result	{
 				case .success(let followers):
