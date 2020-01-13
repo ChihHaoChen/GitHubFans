@@ -51,9 +51,10 @@ class FollowerListVC: UIViewController {
 	
 	// MARK: - API Requests
 	func getFollowers(username: String, page: Int)	{
-		
+		showLoadingView()
 		NetworkService.shared.getFollowers(for: username, page: page) { [weak self] (result) in
 			guard let self = self else	{ return }	// Introduced in Swift 4.2
+			self.dismissLoadingView()
 			
 			switch result	{
 				case .success(let followers):
