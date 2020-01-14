@@ -1,8 +1,8 @@
 //
-//  ErrorMessage.swift
+//  GFError.swift
 //  GitHub_Fans
 //
-//  Created by ChihHao on 2020/01/08.
+//  Created by ChihHao on 2020/01/14.
 //  Copyright © 2020 ChihHao. All rights reserved.
 //
 
