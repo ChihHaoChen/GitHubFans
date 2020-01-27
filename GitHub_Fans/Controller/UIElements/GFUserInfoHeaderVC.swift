@@ -45,12 +45,12 @@ class GFUserInfoHeaderVC: UIViewController {
 	}
    
 	func layoutUI()	{
-		let padding: CGFloat = 20
+		let padding: CGFloat = 0
 		let textImagePadding: CGFloat = 12
 		locationImageView.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
-			avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
+			avatarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
 			avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
 			avatarImageView.widthAnchor.constraint(equalToConstant: 90),
 			avatarImageView.heightAnchor.constraint(equalToConstant: 90),
