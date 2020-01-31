@@ -18,35 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = createTabBar()
+        window?.rootViewController = GFTabBarController()
         window?.makeKeyAndVisible()
         
         configureNavigationBar()
     }
-    // MARK: - The function to create Search NC
-    func createSearchNC() -> UINavigationController {
-        let searchVC = SearchVC()
-        searchVC.title = "Search"
-        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        
-        return UINavigationController(rootViewController: searchVC)
-    }
-    // MARK: - The function to create Favorite NC
-    func createFavoriteNC() -> UINavigationController {
-        let favoriteListVC = FavoriteListVC()
-        favoriteListVC.title = "Favorite"
-        favoriteListVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        
-        return UINavigationController(rootViewController: favoriteListVC)
-    }
-    // MARK: - The function to create TabBarController
-    func createTabBar() -> UITabBarController {
-        let tabBar = UITabBarController()
-        UITabBar.appearance().tintColor = .systemGreen
-        tabBar.viewControllers = [createSearchNC(), createFavoriteNC()]
-        
-        return tabBar
-    }
+   
     
     // MARK: - To adjust the UI of the generic NC
     func configureNavigationBar() {
