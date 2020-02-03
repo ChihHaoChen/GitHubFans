@@ -26,7 +26,7 @@ class FollowerListVC: UIViewController {
 	var isSearching = false
 	
 	var collectionView: UICollectionView!
-	var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
+	var .dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
 	
 	init(username: String) {
 		super.init(nibName: nil, bundle: nil)

@@ -91,4 +91,38 @@ class NetworkService	{
 		}
 		task.resume()  // To start the network call
 	}
+	
+	// MARK: - Function to download avatar images for each follower cell
+	func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void)	{
+		let cacheKey = NSString(string: urlString)
+		
+		if let image = cache.object(forKey: cacheKey)	{
+			completed(image)
+			
+			return // If image already exists in cache
+		}
+		// No error handling due to placerholder images
+		guard let url = URL(string: urlString) else {
+			completed(nil)
+			return
+		}
+		
+		let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+			guard let self = self,
+				error == nil,
+				let response = response as? HTTPURLResponse, response.statusCode == 200,
+				let data = data,
+				let image = UIImage(data: data) else {
+					completed(nil)
+					return
+			}
+			// Store the downloaded image in cache to avoid repetitive downloading
+			self.cache.setObject(image, forKey: cacheKey)
+			// Update UI with the main thread
+			DispatchQueue.main.async {
+				completed(image)
+			}
+		}
+		task.resume()
+	}
 }
