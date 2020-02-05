@@ -9,14 +9,13 @@
 import UIKit
 
 protocol UserInfoVCDelegate: class {
-	func didTapGitHubProfile(for user: User)
-	func didTapGetFollowers(for user: User)
+	func didRequestFollowers(for username: String)
 }
 
 class UserInfoVC: GFDataLoadingVC {
 
 	var username: String!
-	weak var delegate: FollowerListVCDelegate!
+	weak var delegate: UserInfoVCDelegate!
 	
 	let headerView = UIView()
 	let itemViewOne = UIView()
@@ -49,15 +48,9 @@ class UserInfoVC: GFDataLoadingVC {
 	}
 	
 	func populateUIElements(with user: User) {
-		let repoItemVC = GFRepoItemVC(user: user)
-		let followerItemVC = GFFollowerItemVC(user: user)
-		
-		repoItemVC.delegate = self
-		followerItemVC.delegate = self
-		
 		self.addChildView(childVC: GFUserInfoHeaderVC(user: user), to: self.headerView)
-		self.addChildView(childVC: repoItemVC, to: self.itemViewOne)
-		self.addChildView(childVC: followerItemVC, to: self.itemViewTwo)
+		self.addChildView(childVC: GFRepoItemVC(user: user, delegate: self), to: self.itemViewOne)
+		self.addChildView(childVC: GFFollowerItemVC(user: user, delegate: self), to: self.itemViewTwo)
 		self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
 	}
 	
@@ -108,7 +101,7 @@ class UserInfoVC: GFDataLoadingVC {
 	}
 }
 
-extension UserInfoVC: UserInfoVCDelegate	{
+extension UserInfoVC: GFRepoItemVCDelegate {
 	func didTapGitHubProfile(for user: User) {
 		guard let url = URL(string: user.htmlUrl) else {
 			presentGFAlertOnMainThread(title: "Invalid URL", message: "THE url attached to this user is invalid", buttonTitle: "Ok")
@@ -116,7 +109,9 @@ extension UserInfoVC: UserInfoVCDelegate	{
 		}
 		presentSafariVC(with: url)
 	}
-	
+}
+
+extension UserInfoVC: GFFollowerItemVCDelegate {
 	func didTapGetFollowers(for user: User) {
 		guard user.followers != 0 else {
 			presentGFAlertOnMainThread(title: "No followers", message: "This user has no followers.", buttonTitle: "Return")
@@ -125,6 +120,4 @@ extension UserInfoVC: UserInfoVCDelegate	{
 		delegate.didRequestFollowers(for: user.login)
 		dismissVC()
 	}
-	
-	
 }
