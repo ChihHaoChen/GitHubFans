@@ -19,6 +19,7 @@ enum PersistenceService	{
 		static let favorites = "favorites"
 	}
 	
+	
 	static func updateWith(favorite: Follower, actionType: PersistenceActionType, completed: @escaping (GFError?) -> Void) {
 		retrieveFavorites { (result) in
 			switch result {
@@ -29,16 +30,20 @@ enum PersistenceService	{
 								completed(.alreadyInFavorites)
 								return
 							}
+							
 							favorites.append(favorite)
+						
 						case .remove:
 							favorites.removeAll { $0.login == favorite.login }
 					}
 					completed(saveFavorites(favorites: favorites))
+				
 				case .failure(let error):
 					completed(error)
 			}
 		}
 	}
+	
 	
 	// MARK: - To Decode Data
 	static func retrieveFavorites(completed: @escaping (Result<[Follower], GFError>) -> Void)	{
@@ -46,6 +51,7 @@ enum PersistenceService	{
 			completed(.success([]))
 			return
 		}
+		
 		do	{
 			let decoder = JSONDecoder()
 			let favorites = try decoder.decode([Follower].self, from: favoriteData)
@@ -54,6 +60,8 @@ enum PersistenceService	{
 			completed(.failure(.unableToFavorite))
 		}
 	}
+	
+	
 	// MARK: - To Encode the Follower into Data
 	static func saveFavorites(favorites: [Follower]) -> GFError? {
 		do {

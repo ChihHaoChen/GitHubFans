@@ -9,12 +9,12 @@
 import UIKit
 
 class NetworkService	{
+	
 	// Baseline for Singleton, only one instance is allowed, and static
 	static let shared = NetworkService()
 	private let baseURL = "https://api.github.com/users/"
 	let perPageFollowers = 100
 	let cache = NSCache<NSString, UIImage>()
-
 
 	private init()	{}
 	
@@ -54,6 +54,7 @@ class NetworkService	{
 		task.resume()  // To start the network call
 	}
 	
+	
 	func getUserInfo(for username: String, completed: @escaping(Result<User, GFError>) -> Void)	{
 		// Escaping makes closure outlives the main function.
 		let endpoint = baseURL + "\(username)"
@@ -91,6 +92,7 @@ class NetworkService	{
 		}
 		task.resume()  // To start the network call
 	}
+	
 	
 	// MARK: - Function to download avatar images for each follower cell
 	func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void)	{

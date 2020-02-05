@@ -9,6 +9,7 @@
 import UIKit
 
 class GFAlertVC: UIViewController {
+	
     let containerView = GFAlertContainerView()
     let titleLabel = GFTitleLabel(textAlignment: .center, fontSize: 20)
     let messageLabel = GFBodyLabel(textAlignment: .center)
@@ -17,7 +18,9 @@ class GFAlertVC: UIViewController {
     var alertTitle: String?
     var message: String?
     var buttonTitle: String?
+	
     var padding: CGFloat = 20
+	
     
     init(alertTitle: String, message: String, buttonTitle: String)   {
         super.init(nibName: nil, bundle: nil)
@@ -26,23 +29,29 @@ class GFAlertVC: UIViewController {
         self.buttonTitle = buttonTitle
     }
     
+	
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         configureUIElements()
     }
+	
+	
     // MARK: - Configure the UI elements in AlertView Container
 	func configureUIElements()	{
 		view.addSubviews(containerView, titleLabel, actionButton, messageLabel)
+		
 		configureContainerView()
 		configureTitleLabel()
 		configureActionButton()
 		configureMessageLabel()
 	}
+	
 	
     func configureContainerView()   {
         NSLayoutConstraint.activate([
@@ -53,6 +62,7 @@ class GFAlertVC: UIViewController {
         ])
     }
 
+	
     func configureTitleLabel()  {
         titleLabel.text = alertTitle ?? "Some other title"
         
@@ -64,6 +74,7 @@ class GFAlertVC: UIViewController {
         ])
     }
     
+	
     func configureActionButton()  {
 		actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
 		
@@ -77,9 +88,11 @@ class GFAlertVC: UIViewController {
 		])
     }
 	
+	
 	@objc func dismissVC()	{
 		dismiss(animated: true, completion: nil)
 	}
+	
 	
 	func configureMessageLabel()	{
 		messageLabel.text = message ?? "Unable to complete the request"

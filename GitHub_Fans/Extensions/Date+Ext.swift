@@ -17,6 +17,7 @@ extension Date	{
 		return dateFormatter.string(from: self)
 	}
 	
+	
 	func convertToDisplayFormat() -> String	{
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "MMM yyyy"

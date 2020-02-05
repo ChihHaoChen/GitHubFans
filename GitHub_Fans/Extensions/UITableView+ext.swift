@@ -14,6 +14,7 @@ extension UITableView {
 		tableFooterView = UIView(frame: .zero)
 	}
 	
+	
 	func reloadDataOnMainThread() {
 		DispatchQueue.main.async {
 			self.reloadData()

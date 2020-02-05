@@ -18,10 +18,13 @@ class FavoriteListVC: GFDataLoadingVC {
 		configureViewController()
     }
 	
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		getFavorites()
 	}
+	
+	
     // MARK: - Populate the content
 	func getFavorites()	{
 		PersistenceService.retrieveFavorites { [weak self] result in
@@ -29,28 +32,38 @@ class FavoriteListVC: GFDataLoadingVC {
 
 			switch result {
 				case .success(let favorites):
-					if favorites.isEmpty {
-						self.showEmptyStateView(with: "No Favorites?\nAdd one on the follower screen", in: self.view)
-					} else {
-						self.favorites = favorites
-						DispatchQueue.main.async {
-							self.tableView.reloadData()
-							self.view.bringSubviewToFront(self.tableView)
-						}
-					}
+					self.updateUIWithRetrievedFavorites(with: favorites)
+					
 				case .failure(let error):
 					self.presentGFAlertOnMainThread(title: "Something went wrong.", message: error.rawValue, buttonTitle: "Ok")
 			}
 		}
 	}
+	
+	
+	func updateUIWithRetrievedFavorites(with favorites: [Follower]) {
+		if favorites.isEmpty {
+			self.showEmptyStateView(with: "No Favorites?\nAdd one on the follower screen", in: self.view)
+		} else {
+			self.favorites = favorites
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+				self.view.bringSubviewToFront(self.tableView)
+			}
+		}
+	}
+	
+	
 	// MARK: - Configure TableView and the whole UI
 	func configureViewController()	{
 		view.backgroundColor = .systemBackground
 		title = "Favorites"
 		navigationController?.navigationBar.prefersLargeTitles = true
+		
 		configureTableView()
 	}
 
+	
 	func configureTableView() {
 		view.addSubview(tableView)
 		tableView.frame = view.bounds
@@ -63,10 +76,13 @@ class FavoriteListVC: GFDataLoadingVC {
 	}
 }
 
+
 extension FavoriteListVC: UITableViewDataSource, UITableViewDelegate {
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return favorites.count
 	}
+	
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseID) as! FavoriteCell
@@ -76,6 +92,7 @@ extension FavoriteListVC: UITableViewDataSource, UITableViewDelegate {
 		return cell
 	}
 	
+	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let favorite = favorites[indexPath.row]
 		let destVC = FollowerListVC(username: favorite.login)
@@ -83,11 +100,13 @@ extension FavoriteListVC: UITableViewDataSource, UITableViewDelegate {
 		navigationController?.pushViewController(destVC, animated: true)
 	}
 	
+	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		guard editingStyle == .delete else { return }
 		
 		PersistenceService.updateWith(favorite: favorites[indexPath.row], actionType: .remove) { [weak self] error in
 			guard let self = self else { return }
+			
 			guard let error = error else {
 				self.favorites.remove(at: indexPath.row)
 				tableView.deleteRows(at: [indexPath], with: .left)
